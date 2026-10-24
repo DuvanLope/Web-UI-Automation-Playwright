@@ -1,0 +1,40 @@
+
+name: Playwright Web UI Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  web-tests:
+    name: Ejecutar pruebas Playwright
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v7
+
+      - name: Configurar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install -r requirements.txt
+
+      - name: Instalar navegadores Playwright
+        run: |
+          python -m playwright install --with-deps chromium firefox webkit
+
+      - name: Preparar carpeta de capturas
+        run: mkdir -p screenshots
+
+      - name: Ejecutar pruebas en tres navegadores
+        run: |
+          python -m pytest --browser chromium --browser firefox --browser webkit
