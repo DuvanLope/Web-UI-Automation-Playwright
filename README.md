@@ -1,6 +1,10 @@
 
 # Web UI Automation Framework - Playwright
 
+
+![Playwright Web UI Tests](https://github.com/DuvanLope/Web-UI-Automation-Playwright/actions/workflows/playwright-tests.yml/badge.svg)
+
+
 Framework de automatización de pruebas web desarrollado con Python, Playwright y Pytest.
 
 ## Objetivo
